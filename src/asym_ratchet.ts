@@ -11,7 +11,7 @@ import { EventEmitter } from "events";
 import { combine } from "pvtsutils";
 import { INFO_RATCHET, INFO_TEXT, MAX_RATCHET_STACK_SIZE } from "./const";
 import { Curve, ECPublicKey, IECKeyPair, Secret } from "./crypto";
-import { Identity } from "./data";
+import {Identity, IJsonRemoteIdentity} from "./data";
 import { RemoteIdentity } from "./data/remote_identity";
 import { MessageSignedProtocol, PreKeyBundleProtocol, PreKeyMessageProtocol } from "./protocol";
 import { Stack } from "./stack";
@@ -381,7 +381,7 @@ export class AsymmetricRatchet extends EventEmitter implements IJsonSerializable
 
     public async toJSON() {
         return {
-            currentStep: await this.currentStep.toJSON(this.currentStep),
+            currentStep: await this.currentStep.toJSON(),
             counter: this.counter,
             ratchetKey: await Curve.ecKeyPairToJson(this.currentRatchetKey),
             remoteIdentity: await this.remoteIdentity.toJSON(),
