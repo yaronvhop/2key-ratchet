@@ -380,18 +380,21 @@ export class AsymmetricRatchet extends EventEmitter implements IJsonSerializable
 
     public async toJSON() {
         return {
+            currentStep: await this.currentStep.toJSON(this.currentStep),
             counter: this.counter,
             ratchetKey: await Curve.ecKeyPairToJson(this.currentRatchetKey),
-            remoteIdentity: await this.remoteIdentity.signingKey.thumbprint(),
+            remoteIdentity: await this.remoteIdentity.toJSON(),
             rootKey: this.rootKey,
             steps: await this.steps.toJSON(),
         } as IJsonAsymmetricRatchet;
     }
 
     public async fromJSON(obj: IJsonAsymmetricRatchet) {
+        this.currentStep = await DHRatchetStep.fromJSON(obj.currentStep);
         this.currentRatchetKey = await Curve.ecKeyPairFromJson(obj.ratchetKey);
         this.counter = obj.counter;
         this.rootKey = obj.rootKey;
+        this.remoteIdentity = await RemoteIdentity.fromJSON(obj.remoteIdentity)
 
         for (const step of obj.steps) {
             this.currentStep = await DHRatchetStep.fromJSON(step);
