@@ -114,7 +114,8 @@ async function authenticateB(
 }
 
 export interface IJsonAsymmetricRatchet {
-    remoteIdentity: string;
+    currentStep: IJsonDHRatchetStep;
+    remoteIdentity: IJsonRemoteIdentity;
     ratchetKey: CryptoKeyPair;
     counter: number;
     rootKey: CryptoKey;
