@@ -87,7 +87,7 @@ export class Secret {
     public static importHMAC(raw: ArrayBuffer) {
         // console.log("HMAC:", Convert.ToHex(raw));
         return getEngine().crypto.subtle
-            .importKey("raw", raw, { name: HMAC_NAME, hash: { name: HASH_NAME } }, false, ["sign", "verify"]);
+            .importKey("raw", raw, { name: HMAC_NAME, hash: { name: HASH_NAME } }, true, ["sign", "verify"]);
     }
 
     /**
@@ -101,7 +101,7 @@ export class Secret {
      */
     public static importAES(raw: ArrayBuffer) {
         // console.log("AES:", Convert.ToHex(raw));
-        return getEngine().crypto.subtle.importKey("raw", raw, AES_ALGORITHM as any, false, ["encrypt", "decrypt"]);
+        return getEngine().crypto.subtle.importKey("raw", raw, AES_ALGORITHM as any, true, ["encrypt", "decrypt"]);
     }
 
     /**
