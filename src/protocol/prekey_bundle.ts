@@ -16,8 +16,8 @@ import { PreKeySignedProtocol } from "./prekey_signed";
 @ProtobufElement({ name: "PreKeyBundle" })
 export class PreKeyBundleProtocol extends BaseProtocol {
 
-    @ProtobufProperty({ id: 1, type: "uint32", required: true })
-    public registrationId: number;
+    @ProtobufProperty({ id: 1, type: "string", required: true })
+    public registrationId: string;
 
     @ProtobufProperty({ id: 2, parser: IdentityProtocol, required: true })
     public identity: IdentityProtocol;

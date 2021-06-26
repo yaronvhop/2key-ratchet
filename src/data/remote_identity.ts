@@ -12,7 +12,7 @@ import { IdentityProtocol } from "../protocol";
 import { IJsonSerializable } from "../type";
 
 export interface IJsonRemoteIdentity {
-    id: number;
+    id: string;
     /**
      * Thumbprint of signing key
      *
@@ -40,7 +40,7 @@ export class RemoteIdentity implements IJsonSerializable {
         return res;
     }
 
-    public id: number;
+    public id: string;
     public signingKey: ECPublicKey;
     public exchangeKey: ECPublicKey;
     public signature: ArrayBuffer;

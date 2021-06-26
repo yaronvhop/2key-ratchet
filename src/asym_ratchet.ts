@@ -222,7 +222,7 @@ export class AsymmetricRatchet extends EventEmitter implements IJsonSerializable
         return res;
     }
 
-    public id: number;
+    public id: string;
     public rootKey: HMACCryptoKey;
     public identity: Identity;
     public remoteIdentity: RemoteIdentity;

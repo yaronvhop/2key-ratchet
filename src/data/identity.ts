@@ -12,7 +12,7 @@ import { Curve, IECKeyPair } from "../crypto";
 import { IJsonSerializable } from "../type";
 
 export interface IJsonIdentity {
-    id: number;
+    id: string;
     signingKey: CryptoKeyPair;
     exchangeKey: CryptoKeyPair;
     preKeys: CryptoKeyPair[];
@@ -31,7 +31,7 @@ export class Identity implements IJsonSerializable {
         return res;
     }
 
-    public static async create(id: number, signedPreKeyAmount = 0, preKeyAmount = 0, extractable = false) {
+    public static async create(id: string, signedPreKeyAmount = 0, preKeyAmount = 0, extractable = false) {
         const signingKey = await Curve.generateKeyPair(SIGN_ALGORITHM_NAME, extractable);
         const exchangeKey = await Curve.generateKeyPair(DH_ALGORITHM_NAME, extractable);
         const res = new Identity(id, signingKey, exchangeKey);
@@ -47,7 +47,7 @@ export class Identity implements IJsonSerializable {
         return res;
     }
 
-    public id: number;
+    public id: string;
     public signingKey: IECKeyPair;
     public exchangeKey: IECKeyPair;
     public createdAt: Date;
@@ -55,7 +55,7 @@ export class Identity implements IJsonSerializable {
     public preKeys: IECKeyPair[];
     public signedPreKeys: IECKeyPair[];
 
-    protected constructor(id: number, signingKey: IECKeyPair, exchangeKey: IECKeyPair) {
+    protected constructor(id: string, signingKey: IECKeyPair, exchangeKey: IECKeyPair) {
         this.id = id;
         this.signingKey = signingKey;
         this.exchangeKey = exchangeKey;

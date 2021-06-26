@@ -17,8 +17,8 @@ import { MessageSignedProtocol } from "./message_signed";
 @ProtobufElement({ name: "PreKeyMessage" })
 export class PreKeyMessageProtocol extends BaseProtocol {
 
-    @ProtobufProperty({ id: 1, type: "uint32", required: true })
-    public registrationId: number;
+    @ProtobufProperty({ id: 1, type: "string", required: true })
+    public registrationId: string;
 
     @ProtobufProperty({ id: 2, type: "uint32" })
     public preKeyId?: number;
