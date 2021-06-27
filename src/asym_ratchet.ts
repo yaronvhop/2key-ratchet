@@ -416,7 +416,7 @@ export class AsymmetricRatchet extends EventEmitter implements IJsonSerializable
      * @memberOf AsymmetricRatchet
      */
     protected generateRatchetKey() {
-        return Curve.generateKeyPair("ECDH", !!this.options.exportableKeys);
+        return Curve.generateKeyPair("ECDH", true);
     }
 
     /**
